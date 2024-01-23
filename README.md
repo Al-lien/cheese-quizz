@@ -9,6 +9,8 @@ You can also search any kind of cheese you want to know more about and learn spe
 
 Finally, you can create your own questions and play for ever !
 
+![FigmaSchema](./frontend/src/assets/FigmaSchema.png)
+
 ### Project Initialization
 
 - In **VSCode**, install plugins [Prettier - Code formatter](https://github.com/prettier/prettier-vscode) and [ESLint](https://github.com/Microsoft/vscode-eslint) and configure them.
@@ -39,8 +41,6 @@ Finally, you can create your own questions and play for ever !
 * [Trello](https://trello.com/invite/b/73hFJMZu/ATTI6a5c5907e4f4a710d53e9e4527bcb5ac1FDE55E3/cheesequizz)
 
 * [Figma](https://www.figma.com/file/dSluyiXURPMhTP0XMuaGd9/Quiz-App-(Community)?type=design&node-id=324%3A1076&mode=design&t=S93qeTC6jmIDLMcf-1)
-
-![FigmaSchema](./frontend/src/assets/FigmaSchema.svg)
 
 
 
