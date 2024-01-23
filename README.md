@@ -1,6 +1,6 @@
 # Concept 📝
 
-![cheeseQuizz](./frontend/src/assets/CheeseQuizz.svg)
+![cheeseQuizz](./frontend/src/assets/CheeseQuizzBanner.svg)
 
 ### Project Initialization
 
