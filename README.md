@@ -34,7 +34,7 @@ Finally, you can create your own questions and play for ever !
 - [Eslint](https://www.npmjs.com/package/eslint)
 
 
-# Ressources
+# Resources
 
 * [GoogleDrive](https://drive.google.com/drive/folders/1waN9r-dVCi7zIUSzNJq4dtrcjzgf2JAu?usp=sharing)
 
