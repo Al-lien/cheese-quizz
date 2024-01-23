@@ -1,0 +1,20 @@
+@import "./styles/utilities";
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+#root {
+  @include flexboxColumn;
+  @include viewPort;
+}
+
+body {
+  @include textStyle("Roboto", sans-serif, 1rem, normal, 1, $black);
+}
