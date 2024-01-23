@@ -2,12 +2,12 @@
 
 ![cheeseQuizz](./frontend/src/assets/CheeseQuizzBanner.svg)
 
-CheeseQuizz is a trivial pursuit-like game based on the best food ever : **Cheese 🧀**.
+**CheeseQuizz** is a trivia pursuit-like game centered around the world's best food: **Cheese 🧀**.
 
-With this app you can extend your knowledge about cheese with the Quizz game.\
-You can also search any kind of cheese you want to know more about and learn specific informations about them.
+With this app, you can broaden your knowledge about cheese through the quiz game.\
+Additionally, you have the ability to explore information about any type of cheese you wish to learn more about and gain specific insights into them.
 
-Finally, you can create your own questions and play for ever !
+Finally, you can create your own questions and play indefinitely!
 
 ![FigmaSchema](./frontend/src/assets/FigmaSchema.png)
 
