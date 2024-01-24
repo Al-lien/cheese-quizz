@@ -1,10 +1,10 @@
-const db = require("../db/db");
+const db = require("../../db/client");
 
-const testTable = process.env.TEST_TABLE;
+const tables = "questions";
 
 // GET ALL data
 const getAllData = async (req, res) => {
-  const sql = `SELECT * FROM ${testTable}`;
+  const sql = `SELECT * FROM ${tables}`;
 
   try {
     const [results] = await db.promise().query(sql);
@@ -18,7 +18,7 @@ const getAllData = async (req, res) => {
 // GET SINGLE data
 const getSingleData = async (req, res) => {
   const id = parseInt(req.params.id, 10);
-  const sql = `SELECT * FROM ${testTable} WHERE id = ?`;
+  const sql = `SELECT * FROM ${tables} WHERE id = ?`;
 
   try {
     const [results] = await db.promise().query(sql, [id]);
@@ -32,7 +32,7 @@ const getSingleData = async (req, res) => {
 // CREATE data
 const createData = async (req, res) => {
   // const { values, ..., ... } = req.body;
-  // const sql = `INSERT INTO ${testTable}(values, ..., ...) VALUES (?, ?, ?)`;
+  // const sql = `INSERT INTO ${tables}(values, ..., ...) VALUES (?, ?, ?)`;
   /* try {
     const [result] = await db.promise().query(sql, [values, ..., ...]);
     res.status(201).send({ id: result.insertId, message: "Data created" });
@@ -47,7 +47,7 @@ const createData = async (req, res) => {
 const updateData = async (req, res) => {
   // const id = parseInt(req.params.id, 10);
   // const { values, ..., ... } = req.body;
-  // const sql = `UPDATE ${testTable} SET values = ?, ... = ?, ... = ? WHERE id = ?`;
+  // const sql = `UPDATE ${tables} SET values = ?, ... = ?, ... = ? WHERE id = ?`;
 
   /* try {
     const [result] = await db.promise().query(sql, [values, ..., ..., id]);
@@ -67,7 +67,7 @@ const updateData = async (req, res) => {
 // DELETE data
 const deleteData = async (req, res) => {
   const id = parseInt(req.params.id, 10);
-  const sql = `DELETE FROM ${testTable} WHERE id = ?`;
+  const sql = `DELETE FROM ${tables} WHERE id = ?`;
 
   try {
     const [results] = await db.promise().query(sql, [id]);

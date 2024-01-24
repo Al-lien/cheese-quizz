@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 
 // 👇 import basic routes patern
-const basicRoutes = require("./routes/basicRoutes");
+const basicRoutes = require("./src/routes/basicRoutes");
 
 // 👇 express app
 const app = express();

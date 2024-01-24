@@ -3,7 +3,7 @@ import { useEffect } from "react";
 function Home() {
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/api/basicRoutes");
+      const response = await fetch("http://localhost:3001/api/basicRoutes");
 
       const json = await response.json();
 

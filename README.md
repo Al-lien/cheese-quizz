@@ -4,8 +4,8 @@
 
 **CheeseQuizz** is a trivia pursuit-like game centered around the world's best food: **Cheese 🧀**.
 
-With this app, you can broaden your knowledge about cheese through the quiz game.\
-Additionally, you have the ability to explore information about any type of cheese you wish to learn more about and gain specific insights into them.
+With this app, you can broaden your knowledge about cheese through the game.\
+Additionally, you have the ability to explore informations about any type of cheese you wish to learn more about and gain specific insights into them.
 
 Finally, you can create your own questions and play indefinitely!
 
@@ -27,7 +27,7 @@ Finally, you can create your own questions and play indefinitely!
 - [Nodemon](https://www.npmjs.com/package/nodemon)
 - [Dotenv](https://www.npmjs.com/package/dotenv)
 - [React-router-dom](https://www.npmjs.com/package/react-router-dom)
-- [MySQL2](https://www.npmjs.com/package/mysql2) OR [Mongoose](https://www.npmjs.com/package/mongoose)
+- [MySQL2](https://www.npmjs.com/package/mysql2)
 - [Sass](https://www.npmjs.com/package/sass)
 - [Concurrently](https://www.npmjs.com/package/concurrently)
 - [Husky](https://www.npmjs.com/package/husky) 🐶
