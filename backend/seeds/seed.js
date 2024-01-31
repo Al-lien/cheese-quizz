@@ -8,6 +8,7 @@ const { HOST, USER_NAME, PASSWORD, DATABASE } = process.env;
 const questions = fs.readFileSync("./questions.sql", "utf8");
 const choices = fs.readFileSync("./choices.sql", "utf8");
 const users = fs.readFileSync("./users.sql", "utf8");
+const cheeses = fs.readFileSync("./cheeses.sql", "utf8");
 
 const pool = mysql.createPool({
   host: HOST,
@@ -24,6 +25,7 @@ const seeds = async () => {
     await db.query(questions);
     await db.query(choices);
     await db.query(users);
+    await db.query(cheeses);
 
     console.info(`${DATABASE} updated 🆙`);
   } catch (err) {
