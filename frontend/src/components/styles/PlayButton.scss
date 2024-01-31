@@ -1,0 +1,24 @@
+@import "../../styles/utilities";
+
+.playbtn {
+  cursor: pointer;
+  position: relative;
+  width: clamp(340px, 90vw, 500px);
+  margin: 2rem 0;
+  background-color: #abd1c6;
+  border-radius: 20px;
+  filter: drop-shadow(0 20px 5px rgba(0, 0, 0, 0.15));
+
+  h2 {
+    color: $darkGreen;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+
+  img {
+    opacity: 0.25;
+  }
+}

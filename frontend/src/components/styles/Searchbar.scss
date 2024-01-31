@@ -1,0 +1,35 @@
+@import "../../styles/utilities";
+
+.searchbar {
+  position: relative;
+  width: 100%;
+
+  input {
+    width: 100%;
+    padding: 0.9em 0.9em 0.9em 4em;
+    color: $white;
+    background-color: #abd1c6;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+
+    &:focus + .search-filter {
+      opacity: 1;
+    }
+  }
+
+  svg {
+    position: absolute;
+    inset: 0;
+    transform: translate(50%, 45%);
+  }
+}
+
+.search-filter {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: #004744;
+  opacity: 0;
+  inset: 0;
+}

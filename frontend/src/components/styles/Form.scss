@@ -1,0 +1,36 @@
+@import "../../styles/utilities";
+
+.auth-form {
+  @include flexboxColumn;
+  gap: 1.5rem;
+  width: 100vw;
+
+  input,
+  .btn {
+    width: clamp(340px, 90vw, 500px);
+    height: 50px;
+    padding-inline: 1em;
+    font-size: 1rem;
+    text-align: center;
+    background: transparent;
+    outline: none;
+    border: none;
+    border: 2px solid #fdd05f;
+    border-radius: 20px;
+  }
+
+  .btn {
+    cursor: pointer;
+    color: $darkGreen;
+    background-color: #fdd05f;
+    transition: all 0.2s ease;
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+.deadButton {
+  opacity: 0.5;
+}

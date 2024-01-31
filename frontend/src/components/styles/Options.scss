@@ -1,0 +1,32 @@
+@import "../../styles/utilities";
+
+.option {
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+  padding: 0.9em;
+  font-size: 1.2rem;
+  color: #004643;
+  background-color: $white;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  filter: drop-shadow(0 20px 5px rgba(0, 0, 0, 0.15));
+
+  &:hover {
+    background-color: #abd1c6;
+  }
+
+  svg {
+    position: absolute;
+    transform: translate(50%, 50%);
+  }
+}
+
+.selected {
+  background-color: #abd1c6;
+}
+
+.wrong {
+  background-color: #f15b5880;
+}
