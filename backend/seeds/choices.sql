@@ -1,10 +1,10 @@
 INSERT INTO
     choices (
-        question_id,
-        choice_1,
-        choice_2,
-        choice_3,
-        choice_4
+        questionId,
+        choice1,
+        choice2,
+        choice3,
+        choice4
     )
 VALUES
     (

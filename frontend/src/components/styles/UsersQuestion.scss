@@ -1,0 +1,25 @@
+@import "../../styles/utilities";
+
+.usersQuestion-container {
+  @include flexboxRow;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.75em 2em;
+  background-color: #abd1c6;
+  border-radius: 20px;
+
+  button {
+    cursor: pointer;
+    margin-inline: 0.25em;
+    background-color: transparent;
+    border: none;
+
+    &:hover > #edit {
+      stroke: #fdd05f;
+    }
+
+    &:hover > #delete {
+      stroke: #f15a58;
+    }
+  }
+}

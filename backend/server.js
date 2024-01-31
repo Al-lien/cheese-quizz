@@ -4,7 +4,8 @@ const express = require("express");
 const cors = require("cors");
 
 // 👇 import basic routes patern
-const basicRoutes = require("./src/routes/basicRoutes");
+const questionRoutes = require("./src/routes/questionRoutes");
+const userRoutes = require("./src/routes/userRoutes");
 
 // 👇 express app
 const app = express();
@@ -24,9 +25,14 @@ app.use((req, res, next) => {
 });
 
 // 👇 routes
-app.use("/api/basicRoutes", basicRoutes);
+app.use("/api", questionRoutes);
+app.use("/api", userRoutes);
+
+const PORT = process.env.PORT || 3001;
 
 // 👇 listen for request
-app.listen(process.env.PORT, () => {
-  console.info("Listening on port", process.env.PORT);
+app.listen(PORT, () => {
+  console.info("Listening on port", PORT);
 });
+
+module.exports = app;

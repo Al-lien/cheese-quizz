@@ -1,0 +1,63 @@
+@import "../../styles/utilities";
+
+.addQuestion-container {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: #abd1c6;
+  transform: translate(100%);
+  top: 0;
+  left: 0;
+  transition: all 0.3s ease;
+
+  .inputAddQuestion {
+    @include flexboxRow;
+    justify-content: space-between;
+    width: clamp(340px, 90vw, 500px);
+    height: 50px;
+    padding-right: 1em;
+    font-size: 1rem;
+    background: transparent;
+    outline: none;
+    border: none;
+    border: 2px solid #fdd05f;
+    border-radius: 20px;
+
+    input {
+      width: 90%;
+      border: none;
+    }
+  }
+
+  button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+
+  form {
+    margin-top: 2rem;
+
+    .submitbtn {
+      width: clamp(340px, 90vw, 500px);
+      margin-top: auto;
+      padding: 0.9em;
+      font-size: 1.2rem;
+      background-color: #004643;
+      border: none;
+      border-radius: 20px;
+      outline: none;
+      filter: drop-shadow(0 20px 5px rgba(0, 0, 0, 0.15));
+    }
+
+    .disable {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+}
+
+.visible {
+  transform: translate(0);
+}
