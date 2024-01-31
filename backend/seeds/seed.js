@@ -20,7 +20,7 @@ const pool = mysql.createPool({
 const seeds = async () => {
   const db = await pool.getConnection();
   try {
-    // adding tables & datas into the database
+    // adding datas into previously created tables
     await db.query(questions);
     await db.query(choices);
     await db.query(users);
