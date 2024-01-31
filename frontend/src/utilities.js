@@ -1,5 +1,3 @@
-import { redirect } from "react-router-dom";
-
 export async function signup(email, password) {
   const response = await fetch("http://localhost:3001/api/users", {
     method: "POST",

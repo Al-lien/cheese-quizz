@@ -5,7 +5,7 @@ function useRandomQuestion() {
 
   const generateRandomNumber = (nbr) => {
     if (randomQuestions.length === nbr) {
-      console.log("All questions have been asked !");
+      console.info("All questions have been asked !");
     }
 
     const randomNumber = Math.floor(Math.random() * nbr);

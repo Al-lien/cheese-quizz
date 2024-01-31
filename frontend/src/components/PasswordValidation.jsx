@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import "./styles/PasswordValidation.scss";
 
 function PasswordValidation({ firstPassword }) {
-
   return (
     <div className="passwordValidation">
       <ul>

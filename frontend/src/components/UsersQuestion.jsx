@@ -18,6 +18,7 @@ function UsersQuestions({ question }) {
         "Content-Type": "application/json",
       },
     });
+    console.info(response);
   }
 
   return (

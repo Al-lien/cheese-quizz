@@ -32,7 +32,9 @@ function Options({
     <button
       type="button"
       onClick={() => handleClick(option)}
-      className={selectedAnswer === option ? "option btn selected" : "option btn"}
+      className={
+        selectedAnswer === option ? "option btn selected" : "option btn"
+      }
       style={activeStyle}
     >
       {option}

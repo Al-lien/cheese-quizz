@@ -1,5 +1,5 @@
 @import "./styles/utilities";
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&display=swap");
 
 *,
 *::before,
@@ -7,14 +7,154 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  @include textStyle("Baloo 2", sans-serif, 1rem, normal, 1, $white);
 }
 
 body,
 #root {
   @include flexboxColumn;
   @include viewPort;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
 body {
-  @include textStyle("Roboto", sans-serif, 1rem, normal, 1, $black);
+  background: rgba(0, 70, 67, 0.7);
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-weight: $fontWeight-semiBold;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: $fontWeight-semiBold;
+}
+
+i {
+  text-align: center;
+}
+
+header {
+  @include flexboxColumn;
+}
+
+.auth {
+  @include flexboxColumn;
+  width: 100vw;
+}
+
+.home {
+  @include flexboxColumn;
+  width: 100%;
+  text-align: center;
+
+  &__description {
+    margin-top: 5rem;
+  }
+}
+
+.forms {
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+}
+
+.authrequirelayout-container {
+  @include flexboxColumn;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 100vh;
+  padding: 1em;
+}
+
+.account-container {
+  @include flexboxColumn;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 5rem;
+}
+
+.usersQuestions {
+  @include flexboxColumn;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 2em;
+}
+
+.addQuestion {
+  cursor: pointer;
+  position: absolute;
+  bottom: 15%;
+  right: 5%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  align-self: end;
+}
+
+.quizzContainer {
+  @include flexboxColumn;
+  justify-content: flex-start;
+  min-width: 100%;
+  height: 100%;
+
+  > * {
+    min-width: 100%;
+  }
+
+  div:first-of-type {
+    @include flexboxRow;
+    justify-content: flex-start;
+
+    span {
+      margin-inline: auto;
+    }
+  }
+
+  div:nth-child(2) {
+    @include flexboxColumn;
+    margin: 1rem;
+  }
+
+  svg {
+    stroke: #004643;
+  }
+
+  span,
+  i,
+  h2 {
+    text-align: center;
+    color: #004643;
+  }
+
+  h2 {
+    width: 80%;
+    margin-inline: auto;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  ul {
+    @include flexboxColumn;
+    gap: 1em;
+    margin: auto;
+  }
+
+  #answerButton {
+    width: 100%;
+    margin-top: auto;
+    padding: 0.9em;
+    font-size: 1.2rem;
+    background-color: #004643;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    filter: drop-shadow(0 20px 5px rgba(0, 0, 0, 0.15));
+  }
+
+  .disable {
+    pointer-events: none;
+    opacity: 0.5;
+  }
 }
