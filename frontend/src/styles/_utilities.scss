@@ -1,10 +1,10 @@
 // COLORS
 
-$black: #252525; // or #191919 
-$white: #fffff0;
+$black: #252525; // or #191919
+$white: #fefefe;
+$darkGreen: #004643;
 
 // MIXINS
-
 @mixin flexboxRow {
   display: flex;
   justify-content: center;
@@ -23,29 +23,34 @@ $white: #fffff0;
   place-items: center;
 }
 
-@mixin viewPort($height : 100vh, $width: 100vw ) {
-    height: $height;
-    width: $width;
+@mixin viewPort($height: 100vh, $width: 100vw) {
+  height: $height;
+  width: $width;
 }
 
-// FONTS 
+// FONTS
 
-
-@mixin textStyle($fontFamily, $fontFamilyDefault: "sans-serif", $fontSize, $fontWeight, $lineHeight, $fontColor) {
-    font-family: $fontFamily, $fontFamilyDefault;
-    font-size: $fontSize;
-    font-weight: $fontWeight;
-    line-height: $lineHeight;
-    color: $fontColor;
+@mixin textStyle(
+  $fontFamily,
+  $fontFamilyDefault: "sans-serif",
+  $fontSize,
+  $fontWeight: "400",
+  $lineHeight,
+  $fontColor
+) {
+  font-family: $fontFamily, $fontFamilyDefault;
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  line-height: $lineHeight;
+  color: $fontColor;
 }
 
-$fontWeight-thin: 100; 
-$fontWeight-extraLight: 200; 
+$fontWeight-thin: 100;
+$fontWeight-extraLight: 200;
 $fontWeight-light: 300;
-$fontWeight-regular: 400; 
+$fontWeight-regular: 400;
 $fontWeight-medium: 500;
-$fontWeight-semiBold: 600;  
-$fontWeight-bold: 700; 
-$fontWeight-extraBod: 800; 
-$fontWeight-black: 900; 
-
+$fontWeight-semiBold: 600;
+$fontWeight-bold: 700;
+$fontWeight-extraBod: 800;
+$fontWeight-black: 900;
