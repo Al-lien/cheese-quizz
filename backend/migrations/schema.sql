@@ -1,19 +1,18 @@
 CREATE TABLE questions (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  level INT NOT NULL,
+  userId INT NOT NULL,
   question VARCHAR(255) NOT NULL,
   answer VARCHAR(255) NOT NULL,
   details VARCHAR(255)
 );
 
 CREATE TABLE choices (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  question_id INT NOT NULL,
-  choice_1 VARCHAR(255) NOT NULL,
-  choice_2 VARCHAR(255) NOT NULL,
-  choice_3 VARCHAR(255),
-  choice_4 VARCHAR(255),
-  FOREIGN KEY (question_id) REFERENCES questions(id)
+  questionId INT NOT NULL,
+  choice1 VARCHAR(255) NOT NULL,
+  choice2 VARCHAR(255) NOT NULL,
+  choice3 VARCHAR(255),
+  choice4 VARCHAR(255),
+  FOREIGN KEY (questionId) REFERENCES questions(id)
 );
 
 CREATE TABLE users (

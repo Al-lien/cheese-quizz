@@ -6,9 +6,6 @@ const mysql = require("mysql2/promise");
 const { HOST, USER_NAME, PASSWORD, DATABASE } = process.env;
 
 const schema = fs.readFileSync("./schema.sql", "utf8");
-/* const questions = fs.readFileSync("../seeds/questions.sql", "utf8");
-const choices = fs.readFileSync("../seeds/choices.sql", "utf8");
-const users = fs.readFileSync("../seeds/users.sql", "utf8"); */
 
 const pool = mysql.createPool({
   host: HOST,
@@ -25,11 +22,8 @@ const migrate = async () => {
     await db.query(`CREATE DATABASE ${DATABASE}`);
     await db.query(`USE ${DATABASE}`);
 
-    // adding tables & datas into the database
+    // adding tables into the database
     await db.query(schema);
-    /* await db.query(questions);
-    await db.query(choices);
-    await db.query(users); */
 
     console.info(`${DATABASE} created 🆙`);
   } catch (err) {
