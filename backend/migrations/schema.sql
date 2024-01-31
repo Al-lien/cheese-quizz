@@ -20,3 +20,11 @@ CREATE TABLE users (
   email VARCHAR(255) UNIQUE NOT NULL,
   password VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE cheeses (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  region VARCHAR(100),
+  name VARCHAR(100),
+  wikiUrl VARCHAR(255),
+  milk VARCHAR(50)
+);
