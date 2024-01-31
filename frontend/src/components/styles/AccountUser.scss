@@ -1,0 +1,22 @@
+@import "../../styles/utilities";
+
+.userCard {
+  @include flexboxRow;
+  justify-content: flex-start;
+  gap: 0.25em;
+  width: 90%;
+  padding: 2em;
+  color: $white;
+  background-color: #004643;
+  border-radius: 20px;
+
+  h3 {
+    font-size: 3rem;
+    $fontWeight-semiBold: 600;
+  }
+
+  &__names {
+    @include flexboxColumn;
+    align-items: flex-start;
+  }
+}

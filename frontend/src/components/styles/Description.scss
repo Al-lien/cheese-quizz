@@ -1,0 +1,13 @@
+@import "../../styles/utilities";
+
+.description {
+  width: 100%;
+  padding: 1.75em;
+  background-color: #abd1c6;
+  border-radius: 20px;
+
+  p {
+    font-size: 20px;
+    $fontWeight-semiBold: 600;
+  }
+}
