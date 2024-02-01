@@ -121,7 +121,7 @@ const deleteQuestion = async (req, res, next) => {
     const [result2] = await db.promise().query(sqlQuestions, [id]);
 
     if (result.affectedRows > 0 && result2.affectedRows > 0) {
-      res.status(201).send({ message: "Question deleted" });
+      res.status(201).send({ message: "Question deleted", id });
     } else {
       res.status(404).send({ message: "Not Found" });
     }

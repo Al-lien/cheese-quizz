@@ -10,7 +10,12 @@ import { formatQuestionLength } from "../utilities";
 // styles
 import "./styles/UsersQuestion.scss";
 
+// hooks
+import useQuestionsContext from "../hooks/useQuestionsContext";
+
 function UsersQuestions({ question }) {
+  const { dispatch } = useQuestionsContext();
+
   async function handleDelete(id) {
     const response = await fetch(`http://localhost:3001/api/questions/${id}`, {
       method: "DELETE",
@@ -18,6 +23,10 @@ function UsersQuestions({ question }) {
         "Content-Type": "application/json",
       },
     });
+    const json = await response.json();
+    if (response.ok) {
+      dispatch({ type: "DELETE_QUESTION", payload: json });
+    }
     console.info(response);
   }
 
