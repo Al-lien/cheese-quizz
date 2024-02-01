@@ -10,7 +10,12 @@ import { formatQuestionLength } from "../utilities";
 // styles
 import "./styles/UsersQuestion.scss";
 
-function UsersQuestions({ question }) {
+// hooks
+import useQuestionsContext from "../hooks/useQuestionsContext";
+
+function UsersQuestions({ question, setQuestionToUpdate, setIsHidden }) {
+  const { dispatch } = useQuestionsContext();
+
   async function handleDelete(id) {
     const response = await fetch(`http://localhost:3001/api/questions/${id}`, {
       method: "DELETE",
@@ -18,14 +23,26 @@ function UsersQuestions({ question }) {
         "Content-Type": "application/json",
       },
     });
-    console.info(response);
+    const json = await response.json();
+    if (response.ok) {
+      dispatch({ type: "DELETE_QUESTION", payload: json });
+    }
+  }
+
+  async function handleUpdate(childToUpdateId) {
+    setQuestionToUpdate(childToUpdateId);
+    setIsHidden(false);
   }
 
   return (
     <div className="usersQuestion-container">
       {formatQuestionLength(question.question)}
       <span className="usersQuestion-button">
-        <button type="button" aria-label="edit question">
+        <button
+          type="button"
+          aria-label="edit question"
+          onClick={() => handleUpdate(question)}
+        >
           <PencilIcon width={25} id="edit" />
         </button>
         <button
@@ -53,5 +70,7 @@ UsersQuestions.propTypes = {
     choice3: PropTypes.string.isRequired,
     choice4: PropTypes.string.isRequired,
   }).isRequired,
+  setQuestionToUpdate: PropTypes.func.isRequired,
+  setIsHidden: PropTypes.func.isRequired,
 };
 export default UsersQuestions;

@@ -1,5 +1,5 @@
 // react
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // react-router
 import { useLoaderData } from "react-router-dom";
@@ -13,6 +13,7 @@ import UsersQuestion from "../components/UsersQuestion";
 // assets
 import QuestionsPageCheese from "../assets/questionsPageCheese.svg";
 import AddQuestionBtn from "../assets/addQuestion.svg";
+import useQuestionsContext from "../hooks/useQuestionsContext";
 
 export async function loader() {
   const response = await fetch("http://localhost:3001/api/questions");
@@ -23,22 +24,38 @@ export async function loader() {
 }
 
 function Questions() {
-  const usersQuestion = useLoaderData();
+  const filteredData = useLoaderData();
+  const { questions, dispatch } = useQuestionsContext();
   const [isHidden, setIsHidden] = useState(true);
+  const [questionToUpdate, setQuestionToUpdate] = useState({});
 
   const textStyle = {
     fontSize: "clamp(2.9rem, 10vw, 5rem)",
     textAlign: "center",
   };
 
+  useEffect(() => {
+    async function fetchQuestions() {
+      dispatch({ type: "SET_QUESTIONS", payload: filteredData });
+    }
+    fetchQuestions();
+  }, [dispatch]);
+
   return (
     <>
       <Description />
 
       <div className="usersQuestions">
-        {usersQuestion.length > 0 ? (
-          usersQuestion.map((question) => {
-            return <UsersQuestion key={question.id} question={question} />;
+        {questions && questions.length > 0 ? (
+          questions.map((question) => {
+            return (
+              <UsersQuestion
+                key={question.id}
+                question={question}
+                setQuestionToUpdate={setQuestionToUpdate}
+                setIsHidden={setIsHidden}
+              />
+            );
           })
         ) : (
           <>
@@ -55,7 +72,12 @@ function Questions() {
       >
         <img src={AddQuestionBtn} alt="add question icon" />
       </button>
-      <AddQuestion isHidden={isHidden} setIsHidden={setIsHidden} />
+      <AddQuestion
+        isHidden={isHidden}
+        setIsHidden={setIsHidden}
+        setQuestionToUpdate={setQuestionToUpdate}
+        questionToUpdate={questionToUpdate}
+      />
     </>
   );
 }

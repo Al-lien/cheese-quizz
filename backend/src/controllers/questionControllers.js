@@ -63,14 +63,14 @@ const createQuestion = async (req, res, next) => {
       .query(sqlQuestions, [userId, question, answer, details]);
 
     const newQuestionId = resultQuestions.insertId;
-
     await db
       .promise()
       .query(sqlChoices, [newQuestionId, choice1, choice2, choice3, choice4]);
 
-    res.status(201).send({
-      id: resultQuestions.insertId,
-    });
+    const sql = `SELECT * FROM ${table} INNER JOIN ${dependencyTable} ON ${table}.id=${dependencyTable}.questionId WHERE ${table}.id = ?`;
+    const results = await db.promise().query(sql, [newQuestionId]);
+
+    res.status(200).send(results[0]);
   } catch (error) {
     console.error(error);
     res.status(500).send(error);
@@ -83,7 +83,6 @@ const updateQuestion = async (req, res, next) => {
   const id = parseInt(req.params.id, 10);
   const { question, answer, details, choice1, choice2, choice3, choice4 } =
     req.body;
-
   const sqlQuestions = `UPDATE ${table} SET question = ?, answer = ?, details = ? WHERE id = ?`;
   const sqlChoices = `UPDATE ${dependencyTable} SET choice1 = ?, choice2 = ?, choice3 = ?, choice4 = ? WHERE questionId = ?`;
 
@@ -99,7 +98,10 @@ const updateQuestion = async (req, res, next) => {
       .query(sqlChoices, [choice1, choice2, choice3, choice4, questionId]);
 
     if (result.affectedRows > 0 && result2.affectedRows > 0) {
-      res.status(200).send({ message: "Questions updated" });
+      const sql = `SELECT * FROM ${table} INNER JOIN ${dependencyTable} ON ${table}.id=${dependencyTable}.questionId WHERE ${table}.id = ?`;
+      const results = await db.promise().query(sql, [questionId]);
+
+      res.status(200).send(results[0]);
     } else {
       res.sendStatus(404);
     }
@@ -121,7 +123,7 @@ const deleteQuestion = async (req, res, next) => {
     const [result2] = await db.promise().query(sqlQuestions, [id]);
 
     if (result.affectedRows > 0 && result2.affectedRows > 0) {
-      res.status(201).send({ message: "Question deleted" });
+      res.status(201).send({ message: "Question deleted", id });
     } else {
       res.status(404).send({ message: "Not Found" });
     }

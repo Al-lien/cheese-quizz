@@ -59,25 +59,3 @@ export function formatQuestionLength(question) {
   const splittedQuestion = `${question.substring(0, 40)}. . .`;
   return splittedQuestion;
 }
-
-// manage request
-export const questionReducer = (state, action) => {
-  switch (action.type) {
-    case "GET_QUESTIONS":
-      return {
-        questions: action.payload,
-      };
-    case "CREATE_QUESTION":
-      return {
-        questions: [action.payload, ...state.questions],
-      };
-    case "DELETE_QUESTION":
-      return {
-        questions: state.questions.filter(
-          (question) => question.id !== action.payload.id
-        ),
-      };
-    default:
-      return state;
-  }
-};
