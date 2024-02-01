@@ -110,8 +110,6 @@ function Quizz() {
         </div>
         <div>
           <i>Score : {result.score}</i>
-          <i>correctAnswers : {result.correctAnswers}</i>
-          <i>wrongAnswers : {result.wrongAnswers}</i>
         </div>
         {question && <h2>{question}</h2>}
         <ul>

@@ -137,11 +137,13 @@ header {
 
   ul {
     @include flexboxColumn;
+    background-color: transparent;
     gap: 1em;
     margin: auto;
   }
 
   #answerButton {
+    cursor: pointer;
     width: 100%;
     margin-top: auto;
     padding: 0.9em;

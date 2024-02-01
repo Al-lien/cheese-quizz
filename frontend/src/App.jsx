@@ -12,7 +12,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Quizz, { loader as questionsLoader } from "./pages/Quizz";
-import Search from "./pages/Search";
+import Search, { loader as cheesesLoader } from "./pages/Search";
 import Questions, { loader as usersQuestionsLoader } from "./pages/Questions";
 import Account from "./pages/Account";
 
@@ -30,7 +30,7 @@ function App() {
         <Route path="/home" element={<AuthRequiredLayout />}>
           <Route index element={<Home />} />
           <Route path="quizz" element={<Quizz />} loader={questionsLoader} />
-          <Route path="search" element={<Search />} />
+          <Route path="search" element={<Search />} loader={cheesesLoader} />
           <Route
             path="questions"
             element={<Questions />}

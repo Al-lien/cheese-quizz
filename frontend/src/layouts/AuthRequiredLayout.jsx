@@ -13,12 +13,12 @@ function AuthRequiredLayout() {
     return <Navigate to="/login" />;
   }
 
-  if (userToken) {
+  /* if (userToken) {
     const { token } = JSON.parse(userToken);
-    console.info(token);
     // verify token validity && create .env frontend file to link with backend secret api key
-    /* const decoded = jwt.verify(token, "shhhhh");  #EFF0F3 */
-  }
+    const decoded = jwt.verify(token, "shhhhh");
+  } */
+
   return (
     <>
       <div
