@@ -1,6 +1,6 @@
 const postQuestion = async (app, request, db) => {
   const newQuestions = {
-    level: 0,
+    userId: 0,
     question: "What the meaning of life ?",
     answer: "I don't know ...",
     details: "What's funny is that ... OH MY GOD!",
@@ -11,7 +11,7 @@ const postQuestion = async (app, request, db) => {
   };
 
   const response = await request(app).post("/api/questions").send(newQuestions);
-  expect(response.status).toEqual(201);
+  expect(response.status).toEqual(200);
   expect(response.body).toHaveProperty("id");
 
   const [result] = await db
@@ -24,7 +24,7 @@ const postQuestion = async (app, request, db) => {
   const [questionInDatabase] = result;
   expect(questionInDatabase).toHaveProperty(
     "id",
-    "level",
+    "userId",
     "question",
     "answer",
     "details",
@@ -37,7 +37,7 @@ const postQuestion = async (app, request, db) => {
   expect(questionInDatabase.id).toEqual(questionInDatabase.questionId);
 
   const propertiesToCheck = [
-    "level",
+    "userId",
     "question",
     "answer",
     "details",

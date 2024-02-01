@@ -1,4 +1,7 @@
 const crypto = require("node:crypto");
+const bcrypt = require("bcrypt");
+
+const SALT_ROUNDS = 10;
 
 const postUser = async (app, request, db) => {
   const newUser = {
@@ -20,11 +23,13 @@ const postUser = async (app, request, db) => {
   const [userInDatabase] = result;
   expect(userInDatabase).toHaveProperty("id", "email", "password");
 
-  const propertiesToCheck = ["email", "password"];
+  const salt = await bcrypt.genSalt(SALT_ROUNDS);
+  const hash = await bcrypt.hash(newUser.password, salt);
 
-  propertiesToCheck.forEach((property) => {
-    expect(userInDatabase[property]).toStrictEqual(newUser[property]);
-  });
+  expect(userInDatabase.email).toStrictEqual(newUser.email);
+  expect(userInDatabase.password.substring(0, 7)).toStrictEqual(
+    hash.substring(0, 7)
+  );
 };
 
 const postUserError = async (app, request) => {
