@@ -2,7 +2,7 @@
 import PropTypes from "prop-types";
 
 // react
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // library
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
@@ -16,8 +16,14 @@ import CheeseQuizzLogo from "../assets/CheeseQuizzLogo.svg";
 
 // styles
 import "./styles/AddQuestion.scss";
+import useUpdateQuestion from "../hooks/useUpdateQuestion";
 
-function AddQuestion({ isHidden, setIsHidden }) {
+function AddQuestion({
+  isHidden,
+  setIsHidden,
+  setQuestionToUpdate,
+  questionToUpdate,
+}) {
   const { id } = JSON.parse(window.localStorage.getItem("user"));
   const [userId] = useState(id);
 
@@ -36,6 +42,23 @@ function AddQuestion({ isHidden, setIsHidden }) {
   const ref4 = useRef();
 
   const { createQuestion, isLoading, error } = useCreateQuestion();
+  const { updateQuestion } = useUpdateQuestion();
+
+  useEffect(() => {
+    if (Object.values(questionToUpdate).length !== 0) {
+      setNewQuestion(questionToUpdate.question);
+      setAnswer(questionToUpdate.answer);
+      setChoice1(questionToUpdate.choice1);
+      setChoice2(questionToUpdate.choice2);
+      setChoice3(questionToUpdate.choice3);
+      setChoice4(questionToUpdate.choice4);
+      setIsSelectedAnswer(questionToUpdate.answer);
+      ref1.current.value = questionToUpdate.choice1;
+      ref2.current.value = questionToUpdate.choice2;
+      ref3.current.value = questionToUpdate.choice3;
+      ref4.current.value = questionToUpdate.choice4;
+    }
+  }, [isHidden]);
 
   function handleRightAnswer(choice) {
     setIsSelectedAnswer(choice);
@@ -54,6 +77,7 @@ function AddQuestion({ isHidden, setIsHidden }) {
     setChoice2("");
     setChoice3("");
     setChoice4("");
+    setQuestionToUpdate({});
     setIsHidden(true);
   }
 
@@ -69,7 +93,12 @@ function AddQuestion({ isHidden, setIsHidden }) {
       choice3,
       choice4,
     };
-    await createQuestion(submittedQuestion);
+    if (Object.values(questionToUpdate).length !== 0) {
+      // eslint-disable-next-line no-underscore-dangle
+      await updateQuestion(submittedQuestion, questionToUpdate.id);
+    } else {
+      await createQuestion(submittedQuestion);
+    }
 
     handleReset();
   }
@@ -206,6 +235,23 @@ function AddQuestion({ isHidden, setIsHidden }) {
 AddQuestion.propTypes = {
   isHidden: PropTypes.bool.isRequired,
   setIsHidden: PropTypes.func.isRequired,
+  setQuestionToUpdate: PropTypes.func.isRequired,
+  questionToUpdate: PropTypes.shape({
+    id: PropTypes.number,
+    userId: PropTypes.number,
+    question: PropTypes.string,
+    questionId: PropTypes.number,
+    answer: PropTypes.string,
+    details: PropTypes.string,
+    choice1: PropTypes.string,
+    choice2: PropTypes.string,
+    choice3: PropTypes.string,
+    choice4: PropTypes.string,
+  }),
+};
+
+AddQuestion.defaultProps = {
+  questionToUpdate: undefined,
 };
 
 export default AddQuestion;

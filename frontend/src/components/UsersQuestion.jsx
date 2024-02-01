@@ -13,7 +13,7 @@ import "./styles/UsersQuestion.scss";
 // hooks
 import useQuestionsContext from "../hooks/useQuestionsContext";
 
-function UsersQuestions({ question }) {
+function UsersQuestions({ question, setQuestionToUpdate, setIsHidden }) {
   const { dispatch } = useQuestionsContext();
 
   async function handleDelete(id) {
@@ -27,14 +27,22 @@ function UsersQuestions({ question }) {
     if (response.ok) {
       dispatch({ type: "DELETE_QUESTION", payload: json });
     }
-    console.info(response);
+  }
+
+  async function handleUpdate(childToUpdateId) {
+    setQuestionToUpdate(childToUpdateId);
+    setIsHidden(false);
   }
 
   return (
     <div className="usersQuestion-container">
       {formatQuestionLength(question.question)}
       <span className="usersQuestion-button">
-        <button type="button" aria-label="edit question">
+        <button
+          type="button"
+          aria-label="edit question"
+          onClick={() => handleUpdate(question)}
+        >
           <PencilIcon width={25} id="edit" />
         </button>
         <button
@@ -62,5 +70,7 @@ UsersQuestions.propTypes = {
     choice3: PropTypes.string.isRequired,
     choice4: PropTypes.string.isRequired,
   }).isRequired,
+  setQuestionToUpdate: PropTypes.func.isRequired,
+  setIsHidden: PropTypes.func.isRequired,
 };
 export default UsersQuestions;

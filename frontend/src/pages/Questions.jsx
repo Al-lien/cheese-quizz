@@ -27,6 +27,7 @@ function Questions() {
   const filteredData = useLoaderData();
   const { questions, dispatch } = useQuestionsContext();
   const [isHidden, setIsHidden] = useState(true);
+  const [questionToUpdate, setQuestionToUpdate] = useState({});
 
   const textStyle = {
     fontSize: "clamp(2.9rem, 10vw, 5rem)",
@@ -47,7 +48,14 @@ function Questions() {
       <div className="usersQuestions">
         {questions && questions.length > 0 ? (
           questions.map((question) => {
-            return <UsersQuestion key={question.id} question={question} />;
+            return (
+              <UsersQuestion
+                key={question.id}
+                question={question}
+                setQuestionToUpdate={setQuestionToUpdate}
+                setIsHidden={setIsHidden}
+              />
+            );
           })
         ) : (
           <>
@@ -64,7 +72,12 @@ function Questions() {
       >
         <img src={AddQuestionBtn} alt="add question icon" />
       </button>
-      <AddQuestion isHidden={isHidden} setIsHidden={setIsHidden} />
+      <AddQuestion
+        isHidden={isHidden}
+        setIsHidden={setIsHidden}
+        setQuestionToUpdate={setQuestionToUpdate}
+        questionToUpdate={questionToUpdate}
+      />
     </>
   );
 }

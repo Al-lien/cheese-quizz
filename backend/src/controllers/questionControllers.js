@@ -83,7 +83,6 @@ const updateQuestion = async (req, res, next) => {
   const id = parseInt(req.params.id, 10);
   const { question, answer, details, choice1, choice2, choice3, choice4 } =
     req.body;
-
   const sqlQuestions = `UPDATE ${table} SET question = ?, answer = ?, details = ? WHERE id = ?`;
   const sqlChoices = `UPDATE ${dependencyTable} SET choice1 = ?, choice2 = ?, choice3 = ?, choice4 = ? WHERE questionId = ?`;
 
@@ -99,7 +98,10 @@ const updateQuestion = async (req, res, next) => {
       .query(sqlChoices, [choice1, choice2, choice3, choice4, questionId]);
 
     if (result.affectedRows > 0 && result2.affectedRows > 0) {
-      res.status(200).send({ message: "Questions updated" });
+      const sql = `SELECT * FROM ${table} INNER JOIN ${dependencyTable} ON ${table}.id=${dependencyTable}.questionId WHERE ${table}.id = ?`;
+      const results = await db.promise().query(sql, [questionId]);
+
+      res.status(200).send(results[0]);
     } else {
       res.sendStatus(404);
     }
