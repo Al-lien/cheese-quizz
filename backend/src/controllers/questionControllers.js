@@ -63,14 +63,14 @@ const createQuestion = async (req, res, next) => {
       .query(sqlQuestions, [userId, question, answer, details]);
 
     const newQuestionId = resultQuestions.insertId;
-
     await db
       .promise()
       .query(sqlChoices, [newQuestionId, choice1, choice2, choice3, choice4]);
 
-    res.status(201).send({
-      id: resultQuestions.insertId,
-    });
+    const sql = `SELECT * FROM ${table} INNER JOIN ${dependencyTable} ON ${table}.id=${dependencyTable}.questionId WHERE ${table}.id = ?`;
+    const results = await db.promise().query(sql, [newQuestionId]);
+
+    res.status(200).send(results[0]);
   } catch (error) {
     console.error(error);
     res.status(500).send(error);

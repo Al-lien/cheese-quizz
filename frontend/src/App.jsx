@@ -13,7 +13,7 @@ import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Quizz, { loader as questionsLoader } from "./pages/Quizz";
 import Search from "./pages/Search";
-import Questions, { loader as usersQuestionsLoader } from "./pages/Questions";
+import Questions /* , { loader as usersQuestionsLoader } */ from "./pages/Questions";
 import Account from "./pages/Account";
 
 // styles
@@ -34,7 +34,7 @@ function App() {
           <Route
             path="questions"
             element={<Questions />}
-            loader={usersQuestionsLoader}
+            /* loader={usersQuestionsLoader} */
           />
           <Route path="account" element={<Account />} />
         </Route>

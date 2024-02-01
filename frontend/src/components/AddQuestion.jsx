@@ -48,6 +48,12 @@ function AddQuestion({ isHidden, setIsHidden }) {
     ref3.current.value = "";
     ref4.current.value = "";
     setIsSelectedAnswer("");
+    setNewQuestion("");
+    setAnswer("");
+    setChoice1("");
+    setChoice2("");
+    setChoice3("");
+    setChoice4("");
     setIsHidden(true);
   }
 
@@ -64,9 +70,8 @@ function AddQuestion({ isHidden, setIsHidden }) {
       choice4,
     };
     await createQuestion(submittedQuestion);
-    if (!error) {
-      handleReset();
-    }
+
+    handleReset();
   }
 
   return (

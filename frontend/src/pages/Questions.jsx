@@ -1,8 +1,8 @@
 // react
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // react-router
-import { useLoaderData } from "react-router-dom";
+/* import { useLoaderData } from "react-router-dom"; */
 
 // pages && components
 import Emptypage from "../components/Emptypage";
@@ -13,17 +13,18 @@ import UsersQuestion from "../components/UsersQuestion";
 // assets
 import QuestionsPageCheese from "../assets/questionsPageCheese.svg";
 import AddQuestionBtn from "../assets/addQuestion.svg";
+import useQuestionsContext from "../hooks/useQuestionsContext";
 
-export async function loader() {
+/* export async function loader() {
   const response = await fetch("http://localhost:3001/api/questions");
   const data = await response.json();
   const { id } = JSON.parse(window.localStorage.getItem("user"));
   const filteredData = data.filter((question) => question.userId === id);
-  return filteredData;
-}
+  return null;
+} */
 
 function Questions() {
-  const usersQuestion = useLoaderData();
+  const { questions, dispatch } = useQuestionsContext();
   const [isHidden, setIsHidden] = useState(true);
 
   const textStyle = {
@@ -31,13 +32,27 @@ function Questions() {
     textAlign: "center",
   };
 
+  useEffect(() => {
+    async function fetchQuestions() {
+      const { id } = JSON.parse(window.localStorage.getItem("user"));
+      const response = await fetch("http://localhost:3001/api/questions");
+      const json = await response.json();
+      const kestion = await json.filter((question) => question.userId === id);
+
+      if (response.ok) {
+        dispatch({ type: "SET_QUESTIONS", payload: kestion });
+      }
+    }
+    fetchQuestions();
+  }, [dispatch]);
+
   return (
     <>
       <Description />
 
       <div className="usersQuestions">
-        {usersQuestion.length > 0 ? (
-          usersQuestion.map((question) => {
+        {questions && questions.length > 0 ? (
+          questions.map((question) => {
             return <UsersQuestion key={question.id} question={question} />;
           })
         ) : (
