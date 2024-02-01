@@ -1,5 +1,5 @@
-// react
-import { useState } from "react";
+// proptypes
+import PropTypes from "prop-types";
 
 // styles
 import "./styles/Searchbar.scss";
@@ -7,12 +7,19 @@ import "./styles/Searchbar.scss";
 // library
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
-function Searchbar() {
-  const [isDarkBackground, setisDarkBackground] = useState(false);
-
-  function handleBackground(e) {
-    setisDarkBackground(e);
+function Searchbar({ searchTerms, setSearchTerms, isDarkBackground }) {
+  function inputHandler(e) {
+    setSearchTerms(e);
   }
+
+  const activeStyle = {
+    borderRadius: "30px 30px 0 0",
+  };
+
+  const inactiveStyle = {
+    borderRadius: "30px 30px 30px 30px",
+  };
+
   return (
     <>
       <div
@@ -23,13 +30,20 @@ function Searchbar() {
         <input
           type="search"
           placeholder="Où est mon fromage ?"
-          onFocus={() => handleBackground(true)}
-          onBlur={() => handleBackground(false)}
+          value={searchTerms}
+          onChange={(e) => inputHandler(e.target.value)}
+          style={searchTerms.length > 0 ? activeStyle : inactiveStyle}
         />
         <MagnifyingGlassIcon width={30} />
       </form>
     </>
   );
 }
+
+Searchbar.propTypes = {
+  searchTerms: PropTypes.string.isRequired,
+  setSearchTerms: PropTypes.func.isRequired,
+  isDarkBackground: PropTypes.bool.isRequired,
+};
 
 export default Searchbar;

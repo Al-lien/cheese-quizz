@@ -6,6 +6,7 @@ const cors = require("cors");
 // 👇 import basic routes patern
 const questionRoutes = require("./src/routes/questionRoutes");
 const userRoutes = require("./src/routes/userRoutes");
+const cheeseRoutes = require("./src/routes/cheeseRoutes");
 
 // 👇 express app
 const app = express();
@@ -27,6 +28,7 @@ app.use((req, res, next) => {
 // 👇 routes
 app.use("/api", questionRoutes);
 app.use("/api", userRoutes);
+app.use("/api", cheeseRoutes);
 
 const PORT = process.env.PORT || 3001;
 
