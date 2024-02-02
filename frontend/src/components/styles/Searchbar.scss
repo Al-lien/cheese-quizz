@@ -2,7 +2,7 @@
 
 .searchbar {
   position: relative;
-  width: 100%;
+  width: clamp(340px, 90vw, 500px);
 
   input {
     width: 100%;

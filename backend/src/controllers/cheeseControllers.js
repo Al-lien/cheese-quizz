@@ -19,4 +19,25 @@ const getAllCheeses = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllCheeses };
+// GET SINGLE data ✅
+const getCheeseById = async (req, res, next) => {
+  const id = parseInt(req.params.id, 10);
+
+  const sql = `SELECT * FROM ${table} WHERE id = ? `;
+
+  try {
+    const [results] = await db.promise().query(sql, [id]);
+
+    if (results.length === 0) {
+      res.status(404).send("Not Found");
+    } else {
+      res.json(results);
+    }
+  } catch (error) {
+    console.error("MySQL query error:", error);
+    res.status(500).send("Internal Server Error");
+    next();
+  }
+};
+
+module.exports = { getAllCheeses, getCheeseById };

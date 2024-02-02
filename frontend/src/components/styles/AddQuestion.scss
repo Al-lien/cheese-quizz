@@ -10,17 +10,29 @@
   left: 0;
   transition: all 0.3s ease;
 
+  & > header {
+    margin: 2.25em auto;
+    button {
+      @include flexboxRow;
+      width: clamp(340px, 90vw, 500px);
+
+      h2 {
+        margin-inline: auto;
+      }
+    }
+  }
+
   .inputAddQuestion {
     @include flexboxRow;
     justify-content: space-between;
-    width: clamp(340px, 90vw, 500px);
+
     height: 50px;
     padding-right: 1em;
     font-size: 1rem;
     background: transparent;
     outline: none;
     border: none;
-    border: 2px solid #fdd05f;
+    border: 5px solid #fdd05f;
     border-radius: 20px;
 
     input {
@@ -37,10 +49,14 @@
   }
 
   form {
-    margin-top: 2rem;
+    margin: auto;
+
+    & > * {
+      width: clamp(340px, 90vw, 500px);
+      border: 5px solid #fdd05f;
+    }
 
     .submitbtn {
-      width: clamp(340px, 90vw, 500px);
       margin-top: auto;
       padding: 0.9em;
       font-size: 1.2rem;

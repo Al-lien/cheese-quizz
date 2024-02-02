@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 // styles
 import "./styles/SearchList.scss";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function SearchList({ cheeseList, searchTerms }) {
   const [selectCheese, setSelectCheese] = useState({});
@@ -24,14 +25,16 @@ function SearchList({ cheeseList, searchTerms }) {
       <ul className="searchlist">
         {filteredData.slice(0, 5).map((cheese) => {
           return (
-            <button
-              type="button"
-              key={cheese.id}
-              // eslint-disable-next-line no-shadow
-              onClick={(cheese) => handleClick(cheese)}
-            >
-              {cheese.name}
-            </button>
+            <Link to={`${cheese.id}`}>
+              <button
+                type="button"
+                key={cheese.id}
+                // eslint-disable-next-line no-shadow
+                onClick={() => handleClick(cheese)}
+              >
+                {cheese.name}
+              </button>
+            </Link>
           );
         })}
       </ul>

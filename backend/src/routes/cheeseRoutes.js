@@ -1,8 +1,12 @@
 const express = require("express");
 
 const router = express.Router();
-const { getAllCheeses } = require("../controllers/cheeseControllers");
+const {
+  getAllCheeses,
+  getCheeseById,
+} = require("../controllers/cheeseControllers");
 
-router.get("/cheeses", getAllCheeses);
+router.get("/search", getAllCheeses);
+router.get("/search/:id", getCheeseById);
 
 module.exports = router;
