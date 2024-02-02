@@ -13,6 +13,7 @@ import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Quizz, { loader as questionsLoader } from "./pages/Quizz";
 import Search, { loader as cheesesLoader } from "./pages/Search";
+import CheeseCard, { loader as searchCheeseLoader } from "./pages/CheeseCard";
 import Questions, { loader as usersQuestionsLoader } from "./pages/Questions";
 import Account from "./pages/Account";
 
@@ -31,6 +32,11 @@ function App() {
           <Route index element={<Home />} />
           <Route path="quizz" element={<Quizz />} loader={questionsLoader} />
           <Route path="search" element={<Search />} loader={cheesesLoader} />
+          <Route
+            path="search/:id"
+            element={<CheeseCard />}
+            loader={searchCheeseLoader}
+          />
           <Route
             path="questions"
             element={<Questions />}

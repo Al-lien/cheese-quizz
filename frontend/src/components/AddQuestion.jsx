@@ -109,15 +109,15 @@ function AddQuestion({
         isHidden ? "addQuestion-container" : " addQuestion-container visible"
       }
     >
-      <button
-        type="button"
-        aria-label="go back button"
-        onClick={() => handleReset()}
-      >
-        <ChevronLeftIcon width={30} />
-      </button>
       <header>
-        <h2>Ajouter une question</h2>
+        <button
+          type="button"
+          aria-label="go back button"
+          onClick={() => handleReset()}
+        >
+          <ChevronLeftIcon width={30} />
+          <h2>Ajouter une question</h2>
+        </button>
         <img src={CheeseQuizzLogo} alt="Cheese Quizz Logo" width={150} />
       </header>
       {error && <h6>{error}</h6>}

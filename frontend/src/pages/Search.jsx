@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // react-router
-import { useLoaderData } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
 
 // pages && components
 import Emptypage from "../components/Emptypage";
@@ -13,7 +13,7 @@ import SearchPageCheese from "../assets/searchPageCheese.svg";
 import SearchList from "../components/SearchList";
 
 export async function loader() {
-  const response = await fetch("http://localhost:3001/api/cheeses");
+  const response = await fetch("http://localhost:3001/api/search");
   const data = await response.json();
   return data;
 }
@@ -38,7 +38,7 @@ function Search() {
       <div
         className="search-container"
         onFocus={() => handleBackground(true)}
-        onBlur={() => handleBackground(false)}
+        /* onBlur={() => handleBackground(false)} */
       >
         <Searchbar
           setSearchTerms={setSearchTerms}
@@ -49,7 +49,9 @@ function Search() {
           <SearchList cheeseList={cheeseList} searchTerms={searchTerms} />
         )}
       </div>
-      {searchTerms.length > 0 ? null : (
+      {searchTerms.length > 0 ? (
+        <Outlet />
+      ) : (
         <>
           <Emptypage background={SearchPageCheese} />
           <h2 style={textStyle}>
